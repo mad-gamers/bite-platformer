@@ -4,8 +4,8 @@ const ctx = canvas.getContext('2d');
 const cat = {
   name: "Bite",
   position: {
-    x: 50,
-    y: 50
+    x: 300,
+    y: 670
   }
 }
 
@@ -28,7 +28,13 @@ document.addEventListener('keydown', (evt) => {
   if (evt.key === 'ArrowRight') {
     cat.position.x += cell;
     renderCat(cat.position);
-    console.log('Байтян бежит вправо');
+    console.log('Байтян бежит вперёд');
+  }
+
+  if (evt.key === 'ArrowLeft') {
+    cat.position.x -= cell;
+    renderCat(cat.position);
+    console.log('Байтян бежит назад');
   }
   // console.log(evt);
 });
