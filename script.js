@@ -10,6 +10,8 @@ const cat = {
   direction: 'none'
 }
 
+const fontSize = 50;
+
 const renderCat = ({x, y}) => {
   ctx.clearRect(0, 0, 700, 700);
 
@@ -17,6 +19,9 @@ const renderCat = ({x, y}) => {
   ctx.arc(x, y, 30, 0, Math.PI*2);
   ctx.fillStyle = '#260602';
   ctx.fill();
+  ctx.font = `${fontSize}px serif`;
+  ctx.textBaseline = 'middle';
+  ctx.fillText('😼', x - fontSize, y);
   ctx.closePath();
 }
 
