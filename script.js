@@ -21,7 +21,6 @@ const renderCat = ({x, y}) => {
 
 renderCat(cat.position);
 
-
 const cell = 10;
 const horizontalVelocity = cell;
 const verticalVelocity = cell * 10;
@@ -29,20 +28,18 @@ const verticalVelocity = cell * 10;
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'ArrowRight') {
     cat.position.x += horizontalVelocity;
-    renderCat(cat.position);
-    console.log('Байтян бежит вперёд');
   }
 
   if (evt.key === 'ArrowLeft') {
     cat.position.x -= horizontalVelocity;
-    renderCat(cat.position);
-    console.log('Байтян бежит назад');
   }
 
   if (evt.key === 'ArrowUp') {
     cat.position.y -= verticalVelocity;
-    renderCat(cat.position);
-    console.log('Байтян делает прыжок');
   }
-  // console.log(evt);
 });
+
+const fps = 60;
+const frameTime = 1000 / fps;
+
+setInterval(() => {renderCat(cat.position);}, frameTime);
