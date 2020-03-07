@@ -6,7 +6,8 @@ const cat = {
   position: {
     x: 300,
     y: 670
-  }
+  },
+  direction: 'none'
 }
 
 const renderCat = ({x, y}) => {
@@ -27,19 +28,45 @@ const verticalVelocity = cell * 10;
 
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'ArrowRight') {
-    cat.position.x += horizontalVelocity;
+    cat.direction = 'forward';
   }
 
   if (evt.key === 'ArrowLeft') {
-    cat.position.x -= horizontalVelocity;
+    cat.direction = 'backward';
   }
 
   if (evt.key === 'ArrowUp') {
-    cat.position.y -= verticalVelocity;
+    cat.direction = 'up';
+  }
+});
+
+document.addEventListener('keyup', (evt) => {
+  if (evt.key === 'ArrowRight' && cat.direction === 'forward') {
+    cat.direction = 'none';
+  }
+
+  if (evt.key === 'ArrowLeft' && cat.direction === 'backward') {
+    cat.direction = 'none';
   }
 });
 
 const fps = 60;
 const frameTime = 1000 / fps;
 
-setInterval(() => {renderCat(cat.position);}, frameTime);
+setInterval(() => {
+
+  if (cat.direction === 'forward') {
+    cat.position.x += horizontalVelocity;
+  }
+
+  if (cat.direction === 'backward') {
+    cat.position.x -= horizontalVelocity;
+  }
+
+  if (cat.direction === 'up') {
+    cat.position.y -= verticalVelocity;
+    cat.direction = 'none';
+  }
+
+  renderCat(cat.position);
+}, frameTime);
