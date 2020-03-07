@@ -23,18 +23,26 @@ renderCat(cat.position);
 
 
 const cell = 10;
+const horizontalVelocity = cell;
+const verticalVelocity = cell * 10;
 
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'ArrowRight') {
-    cat.position.x += cell;
+    cat.position.x += horizontalVelocity;
     renderCat(cat.position);
     console.log('Байтян бежит вперёд');
   }
 
   if (evt.key === 'ArrowLeft') {
-    cat.position.x -= cell;
+    cat.position.x -= horizontalVelocity;
     renderCat(cat.position);
     console.log('Байтян бежит назад');
+  }
+
+  if (evt.key === 'ArrowUp') {
+    cat.position.y -= verticalVelocity;
+    renderCat(cat.position);
+    console.log('Байтян делает прыжок');
   }
   // console.log(evt);
 });
